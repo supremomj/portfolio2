@@ -2,6 +2,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     initScrollReveal();
     initNavbarHide();
+    initMobileMenu();
     initCustomCursor();
     initScrollProgress();
     initCopyEmail();
@@ -55,6 +56,30 @@ function initNavbarHide() {
         
         lastScrollY = window.scrollY;
     }, { passive: true });
+}
+
+/**
+ * Mobile Menu Toggle
+ */
+function initMobileMenu() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when clicking a link
+        const links = navLinks.querySelectorAll('a');
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+    }
 }
 
 /**
